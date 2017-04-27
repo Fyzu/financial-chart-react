@@ -8,48 +8,48 @@ const financialData = {
         [{
             day: 1,
             value: 65.1531
+        },{
+            day: 31,
+            value: 66.1531
         }],
         [{
-            day: 1,
+            day: 28,
             value: 64.5182
         }],
         [{
-            day: 1,
+            day: 31,
             value: 60.3631
         }],
         [{
-            day: 1,
+            day: 28,
             value: 53.2187
         }],
         [{
-            day: 1,
+            day: 31,
             value: 50.4680
-        }, {
-            day: 15,
-            value: 75.4680
         }],
         [{
-            day: 1,
+            day: 30,
             value: 54.4490
         }],
         [{
-            day: 1,
+            day: 31,
             value: 57.1797
         }],
         [{
-            day: 1,
+            day: 31,
             value: 65.4230
         }],
         [{
-            day: 1,
+            day: 29,
             value: 65.1531
         }],
         [{
-            day: 1,
+            day: 31,
             value: 63.2456
         }],
         [{
-            day: 1,
+            day: 30,
             value: 65.0296
         }],
         [{

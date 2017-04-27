@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const tooltipWidth = 100;
+const tooltipWidth = 110;
 const tooltipHeight = 30;
 const tooltipPadding = 10;
 const tooltipXOffset = 5;
