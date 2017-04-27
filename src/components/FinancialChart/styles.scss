@@ -3,6 +3,9 @@ $grid-color: #E9EAEC;
 $curve-color: #5692BF;
 $background-color: #F6F7F8;
 
+$shadow-z-depth-3: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+$shadow-z-depth-4: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.3);
+
 .financial-chart {
   position: relative;
   display: block;
@@ -12,12 +15,13 @@ $background-color: #F6F7F8;
 
   div.financial-chart-tooltip {
     position: absolute;
+    cursor: pointer;
 
     background-color: #fff;
 
     transform: translate(0, -100%);
 
-    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.3);
+    box-shadow: $shadow-z-depth-3;
 
     color: $text-color;
     font-family: sans-serif;
@@ -43,18 +47,78 @@ $background-color: #F6F7F8;
 
     .financial-chart-tooltip-delta {
       width: 50%;
-      color: #22A053;
+      color: #f00;
 
       display: inline-block;
+
+      .financial-chart-tooltip-delta-arrow {
+        display: inline-block;
+        width: 0;
+        height: 0;
+
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 7px solid #f00;
+
+        margin-right: 5px;
+      }
+
+      &.mod-positive {
+        color: #22A053;
+
+
+        .financial-chart-tooltip-delta-arrow {
+          border-bottom: 7px solid #009739;
+          border-top: none;
+        }
+      }
+
+      .financial-chart-tooltip-delta-arrow-down {
+        display: inline-block;
+        width: 0;
+        height: 0;
+
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 20px solid #f00;
+      }
     }
   }
 
   svg {
 
+    g.financial-chart-y-axis {
+
+      rect.financial-chart-y-axis-grid-line {
+        height: 1px;
+        fill: #DEE1E4;
+      }
+
+      text.financial-chart-y-axis-label {
+        font-family: sans-serif;
+        font-size: 13px;
+        font-weight: 300;
+        fill: #858E97;
+        text-anchor: end;
+      }
+    }
+
+    g.financial-chart-x-axis {
+
+      text.financial-chart-x-axis-label {
+        font-family: sans-serif;
+        font-size: 13px;
+        font-weight: 300;
+        fill: #858E97;
+        text-anchor: middle;
+      }
+    }
+
     g.financial-chart-point {
+      cursor: pointer;
 
       rect.financial-chart-point-box {
-        fill: 0;
+        fill: transparent;
         fill-opacity: 0;
       }
 

@@ -7,10 +7,23 @@ const tooltipPadding = 10;
 const tooltipXOffset = 5;
 const tooltipYOffset = 10;
 
-const Tooltip = ({ point: { x, y, value, deltaValue, day, month, year }, height, width, padding, ...other }) => {
+const formatOptions = {
+    month: 'long',
+    day: 'numeric'
+};
 
-    deltaValue = deltaValue.toFixed(2);
-    value = value.toFixed(2);
+const Tooltip = ({ point: { x, y, value, deltaValue, day, month, year }, ...props }) => {
+    const {
+        width, padding,
+        valueFormatter,
+
+        onMouseEnter, onMouseLeave
+    } = props;
+
+    const numberFormatter = new Intl.NumberFormat("ru", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
 
     const style = {
         width: tooltipWidth,
@@ -31,16 +44,24 @@ const Tooltip = ({ point: { x, y, value, deltaValue, day, month, year }, height,
     }
 
     return (
-        <div className="financial-chart-tooltip" style={style} {...other}>
+        <div className="financial-chart-tooltip" style={style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
             <div className="financial-chart-tooltip-date">
-                {new Date(year, month + 1, day).toLocaleDateString()}
+                {new Date(year, month, day).toLocaleDateString("ru", formatOptions)} {year}
             </div>
             <div className="financial-chart-tooltip-value">
-                {value}
+                {valueFormatter(numberFormatter.format(value))}
             </div>
-            <div className="financial-chart-tooltip-delta">
-                {deltaValue < 0 ? -deltaValue : deltaValue}
-            </div>
+            {deltaValue < 0 ? (
+                <div className="financial-chart-tooltip-delta">
+                    <div className="financial-chart-tooltip-delta-arrow"/>
+                    {numberFormatter.format(-deltaValue)}
+                </div>
+            ) : (
+                <div className="financial-chart-tooltip-delta mod-positive">
+                    <div className="financial-chart-tooltip-delta-arrow"/>
+                    {numberFormatter.format(deltaValue)}
+                </div>
+            )}
         </div>
     );
 };

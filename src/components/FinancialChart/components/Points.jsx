@@ -1,33 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Point = ({ point, idx, tooltipIdx, size, height, yBottomOffset, pointWidth, showTooltip, hideTooltip }) => {
+const Point = ({ point, idx, tooltipIdx, size, height, padding, effectiveWidth, bottomOffset, topOffset, showTooltip, hideTooltip }) => {
 
     const { x, y } = point;
 
+    const pointWidth = effectiveWidth / size;
+
     return (
-        <g key={idx} className={"financial-chart-point " + (idx === tooltipIdx ? "is-over" : "")}
+        <g key={idx} className={"financial-chart-point" + (idx === tooltipIdx ? " is-over" : "")}
            onMouseEnter={showTooltip && (() => showTooltip({ ...point, idx }))} onMouseLeave={hideTooltip}>
             <circle className="financial-chart-point-dot"
                     cx={x} cy={y}/>
 
             <line className="financial-chart-point-axis-line"
-                  x1={x} y1={y} x2={x} y2={height - yBottomOffset}/>
+                  x1={x} y1={y} x2={x} y2={height - bottomOffset}/>
 
             <rect className="financial-chart-point-box"
                   x={idx === 0 ? x : x - pointWidth / 2}
                   width={idx === 0 || idx === size - 1 ? pointWidth / 2 : pointWidth }
-                  y={y - 10} height={height - yBottomOffset - y + 10}/>
+                  y={padding} height={height - padding - bottomOffset}/>
             }
         </g>
     )
 };
 
-const Points = ({ points, ...other }) => {
+const Points = ({ points, ...props }) => {
+
     return (
         <g>
             {points.map((point, idx) =>
-                <Point key={idx} idx={idx} size={points.length} point={point} {...other}/>
+                <Point key={idx} idx={idx} size={points.length} point={point} {...props}/>
             )}
         </g>
     );
