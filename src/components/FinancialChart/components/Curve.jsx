@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Curve = ({ points: [firstPoint, ...points] }) => {
-    const path = `M ${firstPoint.x} ${firstPoint.y}${points.map(point => ` L ${point.x} ${point.y}`)}`;
+    const path = `M ${firstPoint.x} ${firstPoint.y}${points.map(point => ` L ${point.x} ${point.y}`).join('')}`;
 
     return (
         <g>
