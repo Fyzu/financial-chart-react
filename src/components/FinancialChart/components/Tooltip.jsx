@@ -12,6 +12,8 @@ const formatOptions = {
     day: 'numeric'
 };
 
+const numberFormatter = (val) => val.toFixed(2).replace(/\./g, ",");
+
 const Tooltip = ({ point: { x, y, value, deltaValue, day, month, year }, ...props }) => {
     const {
         width, padding,
@@ -19,11 +21,6 @@ const Tooltip = ({ point: { x, y, value, deltaValue, day, month, year }, ...prop
 
         onMouseEnter, onMouseLeave
     } = props;
-
-    const numberFormatter = new Intl.NumberFormat("ru", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    });
 
     const style = {
         width: tooltipWidth,
@@ -49,17 +46,17 @@ const Tooltip = ({ point: { x, y, value, deltaValue, day, month, year }, ...prop
                 {new Date(year, month, day).toLocaleDateString("ru", formatOptions)} {year}
             </div>
             <div className="financial-chart-tooltip-value">
-                {valueFormatter(numberFormatter.format(value))}
+                {valueFormatter(numberFormatter(value))}
             </div>
             {deltaValue < 0 ? (
                 <div className="financial-chart-tooltip-delta">
                     <div className="financial-chart-tooltip-delta-arrow"/>
-                    {numberFormatter.format(-deltaValue)}
+                    {numberFormatter(-deltaValue)}
                 </div>
             ) : (
                 <div className="financial-chart-tooltip-delta mod-positive">
                     <div className="financial-chart-tooltip-delta-arrow"/>
-                    {numberFormatter.format(deltaValue)}
+                    {numberFormatter(deltaValue)}
                 </div>
             )}
         </div>

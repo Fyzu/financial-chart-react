@@ -21,7 +21,6 @@ class FinancialChart extends Component {
         super(props);
 
         this.state = {
-            tooltip: false,
             tooltipPoint: null,
 
             ...this.performedData(props)
@@ -140,7 +139,7 @@ class FinancialChart extends Component {
             clearTimeout(this.timer);
         }
 
-        this.timer = setTimeout(() => this.setState({ tooltip: false, tooltipPoint: null }), 300);
+        this.timer = setTimeout(() => this.setState({ tooltipPoint: null }), 300);
     };
 
     showTooltip = (point) => {
@@ -148,7 +147,7 @@ class FinancialChart extends Component {
             clearTimeout(this.timer);
         }
 
-        this.setState({ tooltip: true, tooltipPoint: point });
+        this.setState({ tooltipPoint: point });
     };
 
     tooltipMouseEnter = () => {
@@ -172,7 +171,7 @@ class FinancialChart extends Component {
 
             points, xLabels,
 
-            tooltip, tooltipPoint
+            tooltipPoint
         } = this.state;
 
         const props = {
@@ -200,7 +199,7 @@ class FinancialChart extends Component {
                     </g>
                 </svg>
 
-                {tooltip &&
+                {tooltipPoint &&
                 <Tooltip {...props} point={tooltipPoint} valueFormatter={valueFormatter}
                          onMouseEnter={this.tooltipMouseEnter} onMouseLeave={this.hideTooltip}/>
                 }
