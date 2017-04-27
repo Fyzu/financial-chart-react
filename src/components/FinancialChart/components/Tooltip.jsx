@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 const tooltipWidth = 110;
 const tooltipHeight = 30;
 const tooltipPadding = 10;
-const tooltipXOffset = 5;
-const tooltipYOffset = 10;
+const tooltipXOffset = 2.5;
+const tooltipYOffset = 12.5;
 
 const monthNames = [
     "января", "февраля", "марта", "апреля", "мая", "июня", "июля",
@@ -28,16 +28,27 @@ const Tooltip = ({ point: { x, y, value, deltaValue, day, month, year }, ...prop
         padding: tooltipPadding,
     };
 
-    if (y - tooltipHeight - tooltipPadding * 2 - tooltipYOffset - padding < .5) {
-        style.top = y + tooltipHeight + tooltipPadding * 2;
-    } else {
-        style.top = y - tooltipYOffset;
-    }
+    const exceedX = x + tooltipXOffset + tooltipWidth + tooltipPadding * 2 + .5 > width;
+    const exceedY = y - tooltipHeight - tooltipPadding * 2 - tooltipYOffset - padding < .5;
 
-    if (x + tooltipXOffset + tooltipWidth + tooltipPadding * 2 + .5 > width) {
-        style.left = x - tooltipXOffset - tooltipWidth - tooltipPadding * 2;
+    if (exceedX && exceedY) {
+        style.top = y + tooltipHeight + tooltipPadding * 2 + tooltipYOffset;
+        style.left = x - tooltipXOffset * 2 - tooltipWidth - tooltipPadding * 2;
+    } else if (exceedY && !exceedX) {
+        style.top = y + tooltipHeight + tooltipPadding * 2 + tooltipYOffset;
+        style.left = x + tooltipXOffset * 2;
     } else {
-        style.left = x + tooltipXOffset;
+        if (exceedY) {
+            style.top = y + tooltipHeight + tooltipPadding * 2;
+        } else {
+            style.top = y - tooltipYOffset;
+        }
+
+        if (exceedX) {
+            style.left = x - tooltipXOffset - tooltipWidth - tooltipPadding * 2;
+        } else {
+            style.left = x + tooltipXOffset;
+        }
     }
 
     return (
