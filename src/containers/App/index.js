@@ -9,9 +9,6 @@ const financialData = {
             day: 1,
             value: 65.1531
         },{
-            day: 15,
-            value: 76.1531
-        },{
             day: 31,
             value: 66.1531
         }],
