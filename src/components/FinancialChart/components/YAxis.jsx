@@ -12,7 +12,7 @@ const YAxis = ({ width, height, maxValue, leftOffset, rightOffset, bottomOffset,
 
                 return (
                     <g key={idx}>
-                        <rect className="financial-chart-y-axis-grid-line"
+                        <rect className="financial-chart-y-axis-grid-line" height={1}
                               x={leftOffset} y={y} width={width - leftOffset - rightOffset}/>
 
                         <text className="financial-chart-y-axis-label" x={axisWidth} y={y}>

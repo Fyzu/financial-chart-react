@@ -11,7 +11,7 @@ const Point = ({ point, idx, tooltipIdx, size, height, padding, effectiveWidth, 
         <g key={idx} className={"financial-chart-point" + (idx === tooltipIdx ? " is-over" : "")}
            onMouseEnter={showTooltip && (() => showTooltip({ ...point, idx }))} onMouseLeave={hideTooltip}>
             <circle className="financial-chart-point-dot"
-                    cx={x} cy={y}/>
+                    cx={x} cy={y} r={4}/>
 
             <line className="financial-chart-point-axis-line"
                   x1={x} y1={y} x2={x} y2={height - bottomOffset}/>

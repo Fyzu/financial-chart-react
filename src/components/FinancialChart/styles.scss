@@ -90,7 +90,6 @@ $shadow-z-depth-4: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0,
     g.financial-chart-y-axis {
 
       rect.financial-chart-y-axis-grid-line {
-        height: 1px;
         fill: #DEE1E4;
       }
 
@@ -124,7 +123,6 @@ $shadow-z-depth-4: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0,
 
       circle.financial-chart-point-dot {
         display: none;
-        r: 4px;
         fill: $curve-color;
         fill-opacity: 1;
         stroke: $background-color;
