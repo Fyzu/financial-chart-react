@@ -96,8 +96,8 @@ class FinancialChart extends Component {
         const points = months.map((days, month) =>
             days.map(({ day, value }) => {
                 const dayData = {
-                    x: ~~((effectiveWidth / size) * this.getDayOfYear(month, day, year) + leftOffset),
-                    y: ~~(heightRatio * (axisMaxValue - value)) + topOffset,
+                    x: Math.trunc((effectiveWidth / size) * this.getDayOfYear(month, day, year) + leftOffset),
+                    y: Math.trunc(heightRatio * (axisMaxValue - value)) + topOffset,
                     value, deltaValue: value - prevValue,
                     month, day, year
                 };
@@ -109,15 +109,15 @@ class FinancialChart extends Component {
         ).reduce((daysOfYear, days) => daysOfYear.concat(days), []);
 
         const widthRatio = size === 0 ? 0 : effectiveWidth / months.length;
-        const xLabels = [...new Array(months.length).keys()].map(month => ({
-            x: ~~((widthRatio * (month + .5)) + leftOffset),
-            y: ~~(originalHeight - (xAxisHeight * .6 + padding)) + .5,
+        const xLabels = months.map((_, month) => ({
+            x: Math.trunc((widthRatio * (month + .5)) + leftOffset),
+            y: Math.trunc(originalHeight - (xAxisHeight * .6 + padding)) + .5,
             label: monthLabels[month]
         }));
 
         xLabels.push({
-            x: ~~((widthRatio / 2) + leftOffset - 8),
-            y: ~~(originalHeight - (10 + padding)) + .5,
+            x: Math.trunc((widthRatio / 2) + leftOffset - 8),
+            y: Math.trunc(originalHeight - (10 + padding)) + .5,
             label: year
         });
 

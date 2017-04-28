@@ -8,7 +8,7 @@ const financialData = {
         [{
             day: 1,
             value: 65.1531
-        },{
+        }, {
             day: 31,
             value: 66.1531
         }],
@@ -59,12 +59,14 @@ const financialData = {
     ]
 };
 
+const valueFormatter = val => `$ ${val}`;
+
 class App extends Component {
 
     render() {
         return (
             <div style={{ textAlign: "center", margin: 10 }}>
-                <FinancialChart data={financialData} valueFormatter={val => `$ ${val}`}/>
+                <FinancialChart data={financialData} valueFormatter={valueFormatter}/>
             </div>
         );
     }

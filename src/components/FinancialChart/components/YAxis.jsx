@@ -8,7 +8,7 @@ const YAxis = ({ width, height, maxValue, leftOffset, rightOffset, bottomOffset,
     return (
         <g className="financial-chart-y-axis">
             {[...new Array(gridRows + 1).keys()].map(idx => {
-                const y = ~~(idx * rowHeight + topOffset) - .5;
+                const y = Math.trunc(idx * rowHeight + topOffset) - .5;
 
                 return (
                     <g key={idx}>
